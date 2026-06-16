@@ -37,3 +37,12 @@ User.findById('6a2c2db7a755a69c78899b87').then(data =>{
 // }).catch(err =>{
 //     console.log(err)
 // })
+
+
+User.updateMany({name:"kiran"},{age:23}).then(res=>{
+    console.log(res)
+}).catch(err =>{
+    console.log(err)
+})
+
+User.findOneAndUpdate({name:"kiran"},{age:55},{new:true}).then(data =>{console.log(data)});
