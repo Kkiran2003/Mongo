@@ -14,38 +14,35 @@ const carSchema = mongoose.Schema({
     model: {
         type: String,
         required: true,
-        maxlength : 255
+        maxlength: 255
     },
     brand: {
         type: String
     },
     price: {
-        type: Number
+        type: Number,
+        min: [ 5000 , "price not less than 5000 rs"]
     },
     discount: {
-        type : Number,
-        default : 5000
+        type: Number,
+        default: 5000
     },
-    feature : {
-        type : String,
-        enum : ["fast" , "Sport"]
+    feature: {
+        type: String,
+        enum: ["fast", "Sport"]
     },
-    engine : [String]
+    engine: [String]
 
 })
 
 const Car = mongoose.model("Car", carSchema);
 
-let car1 = new Car({
-    model : "Mercedes-Maybach S-Class",
-    brand: "Mercedes",
-    price: "34545435",
-    feature : "fast",
-    engine : ["40l","turbo V8"]
-})
-
-car1.save().then(res =>{
+Car.findOneAndUpdate({ brand: "BMW" },
+    { price: 600 },
+    { runValidators: true },
+    { new: true }
+).then(res => {
     console.log(res)
-}).catch(err =>{
-    console.log(err)
+}).catch(err => {
+    console.log(err.errors.price.properties.message)
 })
