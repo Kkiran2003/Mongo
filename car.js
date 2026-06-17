@@ -26,9 +26,9 @@ const carSchema = mongoose.Schema({
 const Car = mongoose.model("Car", carSchema);
 
 let car1 = new Car({
-    model : "BMW 3 Series",
-    brand: "BMW",
-    price: "55678944"
+    model : "BMW 4 Series",
+    brand: "BMW09",
+    price: "5590000"
 })
 
 car1.save().then(res =>{
