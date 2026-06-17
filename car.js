@@ -13,22 +13,35 @@ async function main() {
 const carSchema = mongoose.Schema({
     model: {
         type: String,
-        required: true
+        required: true,
+        maxlength : 255
     },
     brand: {
         type: String
     },
     price: {
         type: Number
-    }
+    },
+    discount: {
+        type : Number,
+        default : 5000
+    },
+    feature : {
+        type : String,
+        enum : ["fast" , "Sport"]
+    },
+    engine : [String]
+
 })
 
 const Car = mongoose.model("Car", carSchema);
 
 let car1 = new Car({
-    model : "BMW 4 Series",
-    brand: "BMW09",
-    price: "5590000"
+    model : "Mercedes-Maybach S-Class",
+    brand: "Mercedes",
+    price: "34545435",
+    feature : "fast",
+    engine : ["40l","turbo V8"]
 })
 
 car1.save().then(res =>{
